@@ -31,7 +31,8 @@ having -- сортируем результаты
         inner join products as p
             on s.product_id = p.product_id
     )
-order by average_income; -- сортируем по возрастанию продавцов, чья выручка ниже средней выручки всех продавцов
+order by average_income; /* сортируем по возрастанию продавцов,
+чья выручка ниже средней выручки всех продавцов */
 
 select
     concat(e.first_name, ' ', e.last_name) as seller,
@@ -96,4 +97,3 @@ select
 from tb1
 where tb1.rn = 1 and tb1.price = 0
 order by tb1.customer_id;
-
