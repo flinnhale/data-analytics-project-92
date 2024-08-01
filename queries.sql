@@ -4,7 +4,7 @@ from
 
 select
     --объединяем имя и фамилию в одну строку
-    concat(e.first_name, ' ', e.last_name) as seller,
+    e.first_name||' '||e.last_name as seller,
     count(s.sales_id) as operations, -- считаем количество проведенных продаж
     -- считаем выручку с округлением до целого
     floor(sum(p.price * s.quantity)) as income
@@ -16,7 +16,7 @@ order by income desc -- сортируем по убыванию выручки
 limit 10; -- оставляем 10 лучших сотрудников
 
 select
-    concat(e.first_name, ' ', e.last_name) as seller,
+    e.first_name||' '||e.last_name as seller,
     floor(avg(p.price * s.quantity)) as average_income
 from employees as e
 inner join sales as s on e.employee_id = s.sales_person_id
@@ -35,14 +35,14 @@ order by average_income; /* сортируем по возрастанию пр�
 чья выручка ниже средней выручки всех продавцов */
 
 select
-    concat(e.first_name, ' ', e.last_name) as seller,
+    e.first_name||' '||e.last_name as seller,
     to_char(s.sale_date, 'day') as day_of_week, -- берем день недели
     floor(sum(p.price * s.quantity)) as income
 from employees as e
 inner join sales as s on e.employee_id = s.sales_person_id
 inner join products as p on s.product_id = p.product_id
 group by
-    concat(e.first_name, ' ', e.last_name),
+    e.first_name||' '||e.last_name,
     -- группируем по продавцу и дню недели
     to_char(s.sale_date, 'day'), to_char(s.sale_date - 1, 'd')
 order by to_char(s.sale_date - 1, 'd'), seller;  -- сортируем по дням недели
@@ -79,8 +79,8 @@ with tb1 as ( -- создаем представление для удобств
         p.price,
         s.customer_id,
         -- с оконной функцией разбиваем данные по покупателям
-        concat(c.first_name, ' ', c.last_name) as customer,
-        concat(e.first_name, ' ', e.last_name) as seller,
+        c.first_name|| ' '|| c.last_name as customer,
+        e.first_name||' '||e.last_name as seller,
         row_number()
             over (partition by s.customer_id order by s.sale_date)
         as rn
