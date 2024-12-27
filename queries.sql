@@ -18,11 +18,11 @@ limit 10; -- оставляем 10 лучших сотрудников
 select
     e.first_name||' '||e.last_name as seller,
     floor(avg(p.price * s.quantity)) as average_income
-from employees as e
-inner join sales as s on e.employee_id = s.sales_person_id
-inner join products as p on s.product_id = p.product_id
-group by e.first_name, e.last_name
-having -- сортируем результаты
+    from employees as e
+    inner join sales as s on e.employee_id = s.sales_person_id
+    inner join products as p on s.product_id = p.product_id
+    group by e.first_name, e.last_name
+    having -- сортируем результаты
     floor(
         -- делаем подзапрос для поиска средней общей выручки
         avg(p.price * s.quantity)) < (
