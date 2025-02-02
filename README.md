@@ -14,7 +14,7 @@
 
 ### Итоги
 
-В ходе выполнения проекта были выполнены все поставленные цели, рассчеты производились в Google Sheets и DeBeaver с помощью SQL-запросов. Дашборд был построен в Superset. Итогом работы является презентация.
+В ходе выполнения проекта были выполнены все поставленные цели, рассчеты производились в Google Sheets и DBeaver с помощью SQL-запросов. Дашборд был построен в Superset. Итогом работы является презентация.
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/flinnhale/data-analytics-project-92/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/flinnhale/data-analytics-project-92/actions)
